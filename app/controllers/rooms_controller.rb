@@ -3,6 +3,9 @@ class RoomsController < ApplicationController
     @room = Room.new()
   end
 
+  def index
+  end
+  
   def create
     # フォームから送られてくるparamsには、❶チャットルーム名:name, ❷参加ユーザー名:user_ids[]が含まれている。
     @room = Room.new(room_params)
