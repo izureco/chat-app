@@ -3,19 +3,16 @@
             <%= link_to current_user.name, edit_user_path(current_user) %>
         </div>
         <div class="create-box">
-            <a href="#">Create chatroom</a>
+            <%= link_to 'Create chatroom', new_room_path %>
         </div>
     </div>
     
     <div class="room-info">
-        <div class="room">
-            <div class="room-name">
-                <a href="#">techroom1</a>
+        <% current_user.rooms.each do |room| %>
+            <div class="room">
+                <div class="room-name">
+                    <a href="#"><%= room.name %></a>
+                </div>
             </div>
-        </div>
-        <div class="room">
-            <div class="room-name">
-                <a href="#">techroom2</a>
-            </div>
-        </div>
+        <% end %>
     </div>
