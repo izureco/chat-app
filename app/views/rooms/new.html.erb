@@ -16,6 +16,22 @@
         <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
       </div>
       <div class='chat-room-form__field--right'>
+        <%# 【チャットルームの新規作成機能 - チャットするユーザーをプルダウンで選択 - 】 %>
+        <%# select : optionで記載された情報を含んだプルダウンを生成する.  %>
+        <%# プルダウンが押されると、❶selectのname属性と❷optionのvalue属性が、params{key(name属性): value(value属性)に格納されて、コントローラーに送られる %>
+        <%# room[user_ids][]という記述の意味 %>
+        <%#   1つの部屋には複数(自身+選択したユーザ)のuserが存在するので、複数の箱を用意する必要がある。
+        <%#   そこで、room[user_ids][]と定義し、まず▼で前半の"[user_ids]"に選択したユーザー情報を格納する %>
+        <select name="room[user_ids][]">
+          <option value="">チャットするユーザーを選択してください</option>
+          <%# モデル名.where("条件") : 条件に一致したレコードと配列を取得できる %>
+          <% User.where.not(id: current_user.id).each do |user| %>
+            <option value=<%= user.id %>><%= user.name %></option>
+          <% end %>
+        </select>
+        <%# type="hidden" : 画面上に表示されないinput要素を作成する %>
+        <%#   次に、後半の"[]"にログイン中の自身の情報を格納し、params{ room: {user_ids: ["user_ids", "current_user.id"]}として、送信する %>
+        <input name="room[user_ids][]" type="hidden" value=<%= current_user.id %>>
       </div>
     </div>
     <div class='chat-room-form__field'>
