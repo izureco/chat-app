@@ -1,6 +1,6 @@
     <div class="chat-create">
         <div class="user-box">
-            <a href="#">Izu</a>
+            <%= link_to current_user.name, edit_user_path(current_user) %>
         </div>
         <div class="create-box">
             <a href="#">Create chatroom</a>
