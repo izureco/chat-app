@@ -1,0 +1,17 @@
+<div class="message-box">
+  <div class="message-header">
+    <div class="message-user">
+    <%# ユーザー名を表示する %>
+      <%= message.user.name %>
+    </div>
+
+    <div class="message-date">
+    <%# 投稿時刻を表示させる %>
+      <%= message.created_at%>
+    </div>
+  </div>
+  <div class="message-content">
+    <%# チャットを表示する %>
+    <%= message.content %>
+  </div>
+</div>

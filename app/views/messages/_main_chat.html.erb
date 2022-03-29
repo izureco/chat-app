@@ -5,20 +5,9 @@
   </div>
 </div>
 
-<div class="message">
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-user">Rei</div>
-      <div class="message-date">2022/03/28(Mon) 08:15:30</div>
-    </div>
-    <div class="message-content">Hello world</div></div>
-
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-user">Izu</div>
-      <div class="message-date">2022/03/28(Mon) 08:30:00</div>
-    </div>
-    <div class="message-content">How are you?</div></div>
+<div class="messages">
+  <%# 全てのチャットメッセージ@messagesひとつひとつの要素messageに対して、renderを実行する。 %>
+  <%= render partial: 'message', collection: @messages %>
 </div>
 
 <%= form_with model: [@room, @message], class: 'form', local: true do |f| %>

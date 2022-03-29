@@ -84,7 +84,7 @@
 }
 
 /* チャットメイン部分 */
-.message{
+.messages{
   height: calc(100vh - 100px - 90px);
   background-color: #FAFAFA;
   padding: 46px 40px 0;
