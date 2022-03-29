@@ -21,15 +21,15 @@
     <div class="message-content">How are you?</div></div>
 </div>
 
-<div class="form">
+<%= form_with model: [@room, @message], class: 'form', local: true do |f| %>
   <div class="form-box">
-    <input type="text" placeholder="type a message" class="message-form">
+    <%= f.text_field :content, class: 'message-form', placeholder: 'type a message' %>
     <%# 画像ボタンの実装 %>
     <%# label要素によって、小クラス(画像ボタン部分)も一緒にクリックしたとみなしてくれる %>
     <label class="form-image">
       <span class="image-file">画像</span>
-      <input type="file" class="hidden">
+      <%= f.file_field :image, class: 'hidden' %>
     </label>
   </div>
-  <input type="submit" value="送信" class="message-send">
-</div>
+  <%= f.submit '送信', class: 'message-send' %>
+<% end %>
