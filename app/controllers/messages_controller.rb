@@ -1,11 +1,11 @@
 class MessagesController < ApplicationController
   def index
-    # @messageで、チャットを保存していく。
+  # @messageで、チャットを保存していく。
     @message = Message.new
-    # roomとmessageは親子関係なので、indexアクションに飛んできたとき、paramsにroom_idが格納されている。
+  # roomとmessageは親子関係なので、indexアクションに飛んできたとき、paramsにroom_idが格納されている。
     @room = Room.find(params[:room_id])
-    # @room.messages : チャットルームに紐づいている全てのメッセージは、user_idと紐づいている。
-    # includes(:user) : 一度の参照で、全ての紐付けを獲得することで、N+1問題を解消している。
+  # @room.messages : チャットルームに紐づいている全てのメッセージは、user_idと紐づいている。
+  # includes(:user) : 一度の参照で、全ての紐付けを獲得することで、N+1問題を解消している。
     @messages = @room.messages.includes(:user)
   end
 
