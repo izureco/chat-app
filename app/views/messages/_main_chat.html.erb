@@ -1,35 +1,26 @@
 <div class="chat-header">
-  <div class="room-name">chatroom1</div>
+  <div class="room-name">
+    <%= @room.name %>
+  </div>
   <div class="chat-exit">
-    <a href="#">チャットを終了する</a>
+    <%= link_to 'チャットを終了する', room_path(@room), method: :delete %>
   </div>
 </div>
 
-<div class="message">
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-user">Rei</div>
-      <div class="message-date">2022/03/28(Mon) 08:15:30</div>
-    </div>
-    <div class="message-content">Hello world</div></div>
-
-  <div class="message-box">
-    <div class="message-header">
-      <div class="message-user">Izu</div>
-      <div class="message-date">2022/03/28(Mon) 08:30:00</div>
-    </div>
-    <div class="message-content">How are you?</div></div>
+<div class="messages">
+  <%# 全てのチャットメッセージ@messagesひとつひとつの要素messageに対して、renderを実行する。 %>
+  <%= render partial: 'message', collection: @messages %>
 </div>
 
-<div class="form">
+<%= form_with model: [@room, @message], class: 'form', local: true do |f| %>
   <div class="form-box">
-    <input type="text" placeholder="type a message" class="message-form">
+    <%= f.text_field :content, class: 'message-form', placeholder: 'type a message' %>
     <%# 画像ボタンの実装 %>
     <%# label要素によって、小クラス(画像ボタン部分)も一緒にクリックしたとみなしてくれる %>
     <label class="form-image">
       <span class="image-file">画像</span>
-      <input type="file" class="hidden">
+      <%= f.file_field :image, class: 'hidden' %>
     </label>
   </div>
-  <input type="submit" value="送信" class="message-send">
-</div>
+  <%= f.submit '送信', class: 'message-send' %>
+<% end %>

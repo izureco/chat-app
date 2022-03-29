@@ -84,7 +84,7 @@
 }
 
 /* チャットメイン部分 */
-.message{
+.messages{
   height: calc(100vh - 100px - 90px);
   background-color: #FAFAFA;
   padding: 46px 40px 0;
@@ -128,6 +128,14 @@
   background-color: white;
   display: flex;
 }
+
+/* validationで弾かれたとき表示されるerrorクラス */
+.field_with_errors{
+  /* contentsオプション : "指定したclassだけ"表示させないようにする */
+  /* noneオプション : このクラスだけでなく、子要素も非表示になってしまう */
+  display: contents;
+}
+
 .message-form{
   border: none;
   height: 50px;
