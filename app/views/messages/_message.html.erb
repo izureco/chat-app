@@ -14,4 +14,8 @@
     <%# チャットを表示する %>
     <%= message.content %>
   </div>
+  <%# image_tag : モデル.ファイル名でモデルから画像を簡単に呼び出せるヘルパーメソッド。 %>
+  <%# message.image.attached? で添付されているかチェックする %>
+  <%# variant(変形)メソッド : 画像の大きさを調整する %>
+  <%= image_tag message.image.variant(resize: '500x500'), class: 'message-image' if message.image.attached? %>
 </div>
