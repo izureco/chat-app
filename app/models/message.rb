@@ -6,10 +6,18 @@ class Message < ApplicationRecord
   # 例) Messageモデルのimageファイル : Message.imageと書けば、その画像の持つパラメータのキーにもできる。
   has_one_attached :image
 
-  # ▼は、2つの項目がtrueのとき、validate(制限)するという意味
-  ## ❶ :content, presence: true -> "チャット"が空である
-  ## ❷ unless: :was_attatched?  -> "画像"が添付されていない(was_attachedの戻り値がfalse)
-  # つまり、❶が満たされていても、❷で画像が添付されていれば投稿は可能。逆もまた然り
+  # ▼は、validationに条件分岐をつけている。
+  # 私の理解 : 以下2つの項目を満たすとき、validation(検証)するという意味
+  ## ❶ :content, presence: true -> "content"が空かどうか。
+  ## ❷ unless: :was_attatched?  -> "画像"が添付されているかどうか。unlessだから、画像添付(戻り値がtrue)されていたらスルーされる?
+
+  # <投稿できる場合>
+  # ❶contentが空、❷画像が添付されている(戻り値がtrue)
+  # ❶contentは空ではない、❷画像が添付されていない(戻り値がfalse)
+
+  # <投稿できない場合> *❶❷どちらもtrue
+  # ❶contentが空、❷画像が添付されていない(戻り値がfalse -> unlessがtrueになるということ)
+
   validates :content, presence: true, unless: :was_attached?
 
   def was_attached?
